@@ -1,7 +1,6 @@
 import org.gicentre.utils.stat.*;
 
 String input= new String();
-String artist= new String();
 Table table;
 IntList prices= new IntList();
 int one,two,three,four,five,six,seven,eight,nine,ten;
@@ -21,8 +20,8 @@ void setup(){
     String artist = row.getString("Artist");
     int price = row.getInt("Price");
     
-    println(artist + " can be booked for $" + price + ",00");
-  
+    println(artist + " can be booked for $" + price + ",00"); 
+  }
 }
 
 void generateData(){
@@ -41,7 +40,7 @@ void generateData(){
       case 10:ten++;break;
     }
   }
-
+}
 
 
 /*String input= new String();
