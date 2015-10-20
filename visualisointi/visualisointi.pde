@@ -19,7 +19,10 @@ void setup(){
   for (TableRow row : table.rows()) {
     String artist = row.getString("Artist");
     int price = row.getInt("Price");
-    
+    if(artist=="Prince"){
+      println("DERP");
+      break;
+    }
     println(artist + " can be booked for $" + price + ",00"); 
   }
 }
