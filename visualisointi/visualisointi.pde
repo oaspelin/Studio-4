@@ -1,10 +1,38 @@
-String input= new String();
-String artist= new String();
 Table table;
+
+void setup() {
+  
+  table = loadTable("Bandprices.csv", "header");
+
+  println(table.getRowCount() + " total rows in table"); 
+
+  for (TableRow row : table.rows()) {
+    String artist = row.getString("Artist");
+    int price = row.getInt("Price");
+    
+    println(artist + " can be booked for $" + price + ",00");
+  }
+}
+
+
+/*String input= new String();
+//String artist= new String();
+Table table;
+
 void setup(){
   size(600, 600);
    table = loadTable("Bandprices.csv", "header");
    println(table.getRowCount() + " total rows in table"); 
+   
+    for (TableRow row : table.rows()) {
+    
+    String artist = row.getString("ARTIST");
+    String price = row.getString("PRICE");
+    
+    println(artist + " has a price of " + price);
+  }
+   
+   
 }
 
 void draw(){
@@ -12,8 +40,9 @@ void draw(){
   fill(0);
   textSize(32);
   text("Input"+input,50,50);
-  text("Artist: "+artist,50,80);
+  //text("Artist: "+artist,50,80);
 }
+
 
 void keyPressed(){
   //backspace
@@ -22,11 +51,11 @@ void keyPressed(){
   }
   //hakee tästä artista dataa
   else if(key ==ENTER){
-    artist=input;
+    //artist=input;
     input="";
   }
   //new chars to our input string
   else{
     input=input+key;
   }
-}
+}*/
