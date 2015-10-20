@@ -1,5 +1,5 @@
 String input= new String();
-String artist;
+String artist= new String();
 Table table;
 void setup(){
   size(600, 600);
@@ -11,7 +11,8 @@ void draw(){
   background(255);
   fill(0);
   textSize(32);
-  text(input,50,50);
+  text("Input"+input,50,50);
+  text("Artist: "+artist,50,80);
 }
 
 void keyPressed(){
