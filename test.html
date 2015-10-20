@@ -3,8 +3,6 @@
 <head>
     <script type="text/javascript">
 
-        // We need to check if the browser supports WebSockets
-
         if ("WebSocket" in window) {
 
             // Before we can connect to the WebSocket, we need to start it in Processing.
@@ -19,10 +17,6 @@
             alert("WebSocket NOT supported by your Browser!");
         }
 
-        // Now we can start the speech recognition
-        // Supported only in Chrome
-        // Once started, you need to allow Chrome to use the microphone
-
         var recognition = new webkitSpeechRecognition();
 
         // Be default, Chrome will only return a single result.
@@ -30,6 +24,12 @@
 
         recognition.continuous = true;
         recognition.interimResults = true;
+        recognition.lang = 'en-GB'
+        recognition.start();
+
+        recognition.onstart = function(event){ 
+            console.log("onstart", event);
+        } 
 
         recognition.onresult = function(event) {
             alert("Test");
@@ -42,7 +42,7 @@
         }
 
         // Start the recognition
-        recognition.start();
+       // recognition.start();
 
 </script>
 </head>
