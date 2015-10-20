@@ -42,37 +42,13 @@ void generateData(){
   }
 }
 
-
-/*String input= new String();
-//String artist= new String();
-Table table;
-
-void setup(){
-  size(600, 600);
-   table = loadTable("Bandprices.csv", "header");
-   println(table.getRowCount() + " total rows in table"); 
-   
-    for (TableRow row : table.rows()) {
-    
-    String artist = row.getString("ARTIST");
-    String price = row.getString("PRICE");
-    
-    println(artist + " has a price of " + price);
-  }
-   
-   
->>>>>>> Laurinbranch
-}
-
 void draw(){
   background(255);
   fill(0);
   textSize(32);
-<<<<<<< HEAD
-  text("Input: "+input,50,50);
-  text("Artist: "+artist,50,80);
   drawgraph();
 }
+
 
 void drawgraph(){
   textFont(createFont("Serif",10),20);
@@ -84,13 +60,9 @@ void drawgraph(){
   barChart.setBarColour(color(200,80,80,150));
   barChart.setBarLabels(new String[] {str(one),str(two),str(three),str(four),str(five),str(six),str(seven),str(eight),str(nine),str(ten)});
   barChart.setBarGap(4);
-=======
-  text("Input"+input,50,50);
-  //text("Artist: "+artist,50,80);
->>>>>>> Laurinbranch
 }
 
-
+/*
 void keyPressed(){
   //backspace
   if (key == BACKSPACE && input.length() > 0 ){
