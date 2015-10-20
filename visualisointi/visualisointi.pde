@@ -3,14 +3,13 @@ import org.gicentre.utils.stat.*;
 String input= new String();
 Table table;
 IntList Prices= new IntList();
-//Keeps count on how many artists there are in the price ranges
-int Pr1, Pr2, Pr3, Pr4, Pr5, Pr6, Pr7, Pr8, Pr9, Pr10,Pr11,Pr12,Pr13,Pr14,Pr15,Pr16,Pr17,Pr18,Pr19,Pr20,Pr21,Pr22,Pr23,Pr24,Pr25,Pr26,Pr27,Pr28;
+//keeps track on how many artists in what pricerange
 float [] PriceRange= new float[27];
 
 BarChart barChart;
 
 void setup() {
-  size(600, 600);
+  size(800, 600);
   table = loadTable("Bandprices.csv", "header");
   barChart = new BarChart(this);
   //println(table.getRowCount() + " total rows in table"); 
@@ -26,11 +25,12 @@ void setup() {
 }
 
 //sorts the band prices in price ranges
+//tätä vois tsiigailla jos tää on hyvä lajittelu
 void checkPriceRange(int p) {
     if (p<=7500) PriceRange[0]+=1;
     else if (p<10000) PriceRange[1]+=1; 
     else if (p==10000) PriceRange[2]+=1; 
-    else if (p<=1350) PriceRange[3]+=1;
+    else if (p<=13500) PriceRange[3]+=1;
     else if (p==15000) PriceRange[4]+=1;
     else if (p<20000) PriceRange[5]+=1;
     else if (p==20000) PriceRange[6]+=1;
@@ -41,7 +41,7 @@ void checkPriceRange(int p) {
     else if (p<=50000) PriceRange[11]+=1;
     else if (p<=70000) PriceRange[12]+=1;
     else if (p==75000) PriceRange[13]+=1;
-    else if (p<10000) PriceRange[14]+=1;
+    else if (p<100000) PriceRange[14]+=1;
     else if (p==100000) PriceRange[15]+=1;
     else if (p<=135000) PriceRange[16]+=1;
     else if (p==150000) PriceRange[17]+=1;
@@ -54,7 +54,6 @@ void checkPriceRange(int p) {
     else if (p<=600000) PriceRange[24]+=1;
     else if (p==750000) PriceRange[25]+=1;
     else if (p<1000000) PriceRange[26]+=1;
-    else if (p>1000000) PriceRange[27]+=1;
 }
 
 void draw() {
@@ -66,20 +65,15 @@ void draw() {
 
 
 void drawgraph() {
-  textFont(createFont("Serif", 10), 20);
+  textFont(createFont("Arial", 10), 10);
   barChart.setData(
   PriceRange
   );
-  barChart.draw(100, 100, 400, 200);
+  barChart.draw(100, 100, 500, 300);
   barChart.showValueAxis(true);
-  barChart.setValueFormat("#€");
-  barChart.showCategoryAxis(true);
+  barChart.setValueFormat("#");
   barChart.setBarColour(color(200, 80, 80, 150));
-  barChart.setBarLabels(new String[] {
-   // str(one), str(two), str(three), str(four), str(five), str(six), str(seven), str(eight), str(nine), str(ten)
-  }
-  );
-  barChart.setBarGap(4);
+  barChart.setBarGap(1);
 }
 
 /*
