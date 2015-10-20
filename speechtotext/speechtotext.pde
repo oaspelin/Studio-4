@@ -19,8 +19,9 @@ void stop(){
 
 void websocketOnMessage(WebSocketConnection con, String msg){
   println(msg);
-  if (msg.contains("hello")) println("Yay!");
 }
+
+// Koodi palauttaa puheentunnistuksen vastauksen msg muuttujaan
 
 void websocketOnOpen(WebSocketConnection con){
   println("A client joined");
