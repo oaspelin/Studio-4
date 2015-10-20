@@ -1,4 +1,3 @@
-
 import org.gicentre.utils.stat.*;
 
 String input= new String();
@@ -10,13 +9,20 @@ int one,two,three,four,five,six,seven,eight,nine,ten;
 
 BarChart barChart;
 
-
-
 void setup(){
   size(600, 600);
   table = loadTable("Bandprices.csv", "header");
   generateData();
   barChart = new BarChart(this);
+
+
+  println(table.getRowCount() + " total rows in table"); 
+  for (TableRow row : table.rows()) {
+    String artist = row.getString("Artist");
+    int price = row.getInt("Price");
+    
+    println(artist + " can be booked for $" + price + ",00");
+  
 }
 
 void generateData(){
@@ -35,12 +41,35 @@ void generateData(){
       case 10:ten++;break;
     }
   }
+
+
+
+/*String input= new String();
+//String artist= new String();
+Table table;
+
+void setup(){
+  size(600, 600);
+   table = loadTable("Bandprices.csv", "header");
+   println(table.getRowCount() + " total rows in table"); 
+   
+    for (TableRow row : table.rows()) {
+    
+    String artist = row.getString("ARTIST");
+    String price = row.getString("PRICE");
+    
+    println(artist + " has a price of " + price);
+  }
+   
+   
+>>>>>>> Laurinbranch
 }
 
 void draw(){
   background(255);
   fill(0);
   textSize(32);
+<<<<<<< HEAD
   text("Input: "+input,50,50);
   text("Artist: "+artist,50,80);
   drawgraph();
@@ -56,7 +85,12 @@ void drawgraph(){
   barChart.setBarColour(color(200,80,80,150));
   barChart.setBarLabels(new String[] {str(one),str(two),str(three),str(four),str(five),str(six),str(seven),str(eight),str(nine),str(ten)});
   barChart.setBarGap(4);
+=======
+  text("Input"+input,50,50);
+  //text("Artist: "+artist,50,80);
+>>>>>>> Laurinbranch
 }
+
 
 void keyPressed(){
   //backspace
@@ -65,11 +99,11 @@ void keyPressed(){
   }
   //hakee tästä artista dataa
   else if(key ==ENTER){
-    artist=input;
+    //artist=input;
     input="";
   }
   //new chars to our input string
   else{
     input=input+key;
   }
-}
+}*/
