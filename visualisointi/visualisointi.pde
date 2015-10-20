@@ -1,7 +1,10 @@
 String input= new String();
 String artist;
+Table table;
 void setup(){
   size(600, 600);
+   table = loadTable("Bandprices_v1.csv", "header");
+   println(table.getRowCount() + " total rows in table"); 
 }
 
 void draw(){
