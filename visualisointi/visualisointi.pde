@@ -77,11 +77,10 @@ String searchforArtist(String searchedArtist){
   String ret= "The artist could not be found :(";
   for (TableRow row : table.rows ()) {
     String value = row.getString("Artist");
-    value=value.replaceAll("\\s+","");
     int Price = row.getInt("Price");
     String str1=searchedArtist;
     if (str1.equals(value) == true) {
-      ret= artist + " can be booked for $" + Price + ",00";
+      ret= value + " can be booked for $" + Price + ",00";
     }
   }
   return ret;
@@ -119,7 +118,6 @@ void keyPressed() {
   //hakee tästä artista dataa
   //could be made so they are not case sensitive
   else if (key ==ENTER) {
-    println(input.substring(1));
     artist=searchforArtist(input.substring(1));
     search=true;
     input=new String();
