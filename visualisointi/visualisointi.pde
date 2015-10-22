@@ -89,7 +89,7 @@ String searchforArtist(String searchedArtist){
 //testing
 void drawArtistInfo(){
   textSize(32);
-  text(artist, 100,100);
+  text(artist, 50,100);
 }
 
 //used for testing
@@ -102,7 +102,7 @@ void drawgraph() {
   barChart.setData(
   PriceRange
     );
-  barChart.draw(100, 100, 500, 300);
+  barChart.draw(100, 120, 500, 300);
   barChart.showValueAxis(true);
   barChart.setValueFormat("#");
   barChart.setBarColour(color(200, 80, 80, 150));
@@ -118,6 +118,9 @@ void keyPressed() {
   //hakee tästä artista dataa
   //could be made so they are not case sensitive
   else if (key ==ENTER) {
+    input=input.replaceAll("\\s+","");
+    char [] array=input;
+    println(array);
     artist=searchforArtist(input.substring(1));
     search=true;
     input=new String();
