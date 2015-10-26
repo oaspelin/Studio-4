@@ -7,7 +7,6 @@ Table table;
 IntList Prices= new IntList();
 //keeps track on how many artists in what pricerange
 float [] PriceRange= new float[27];
-char letter;
 
 BarChart barChart;
 
@@ -65,8 +64,12 @@ void checkPriceRange(int p) {
 
 void draw() {
   background(255);
+  fill(200);
+  rectMode(CENTER);
+  noStroke();
+  rect(400, 40, 800, 80);
   fill(0);
-  textSize(32);
+  rectMode(CORNER);
   drawKeyboardInput();
   if(search){
     drawgraph();
@@ -89,13 +92,12 @@ String searchforArtist(String searchedArtist){
 
 //testing
 void drawArtistInfo(){
-  textSize(32);
-  text(artist, 50,100);
+  text(artist, 30, 60);
 }
 
 //used for testing
 void drawKeyboardInput() {
-  text("Search for artist: "+input, 50, 50);
+  text("Search for artist: "+input, 30, 30, 300, 100);
 }
 
 void drawgraph() {
@@ -103,7 +105,7 @@ void drawgraph() {
   barChart.setData(
   PriceRange
     );
-  barChart.draw(100, 120, 500, 300);
+  barChart.draw(40, 100, 700, 450);
   barChart.showValueAxis(true);
   barChart.setValueFormat("#");
   barChart.setBarColour(color(200, 80, 80, 150));
@@ -116,7 +118,7 @@ void keyPressed() {
   if (key == BACKSPACE && input.length() > 0 ) {
     input = input.substring(0, input.length() - 1);
   }
-  //hakee tästä artista dataa
+  //hakee tästä artistista dataa
   //could be made so they are not case sensitive
   else if (key ==ENTER) {
     //input=input.replaceAll("\\s+",""); <-- Mitä varten? t. Anssi
