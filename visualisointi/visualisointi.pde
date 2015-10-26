@@ -120,7 +120,7 @@ void keyPressed() {
   //could be made so they are not case sensitive
   else if (key ==ENTER) {
     //input=input.replaceAll("\\s+",""); <-- Mitä varten? t. Anssi
-    artist=searchforArtist(input);
+    artist=searchforArtist(input.toLowerCase());
     search=true;
     input=new String();
   }
