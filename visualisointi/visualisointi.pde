@@ -125,8 +125,6 @@ void keyPressed() {
     input=new String();
   }
   //new chars to our input string
-  else if (key >= 'A' && key <= 'z' || key == ' ') {
-      letter = key;
-      input = input + letter;
-    }
-  }
+  else input = input+key;
+}
+  
