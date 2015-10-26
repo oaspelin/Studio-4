@@ -7,6 +7,7 @@ Table table;
 IntList Prices= new IntList();
 //keeps track on how many artists in what pricerange
 float [] PriceRange= new float[27];
+char letter;
 
 BarChart barChart;
 
@@ -79,7 +80,7 @@ String searchforArtist(String searchedArtist){
     String value = row.getString("Artist");
     int Price = row.getInt("Price");
     String str1=searchedArtist;
-    if (str1.equals(value) == true) {
+    if (str1.equals(value.toLowerCase()) == true) {
       ret= value + " can be booked for $" + Price + ",00";
     }
   }
@@ -118,17 +119,16 @@ void keyPressed() {
   //hakee tästä artista dataa
   //could be made so they are not case sensitive
   else if (key ==ENTER) {
-    input=input.replaceAll("\\s+","");
-    char [] array = new char[input.length()];
-    input.getChars(0, input.length(), array, 0);
-    String inputSearch = String.valueOf(array);
-    println(inputSearch);
-    artist=searchforArtist(input.substring(1));
+    //input=input.replaceAll("\\s+",""); <-- Mitä varten? t. Anssi
+    artist=searchforArtist(input);
     search=true;
     input=new String();
   }
   //new chars to our input string
-  else {
-    input=input+key;
+  else if (key >= 'A' && key <= 'z' || key == ' ') {
+      letter = key;
+      input = input + letter;
+      println(letter);
+      println(input);
+    }
   }
-}
