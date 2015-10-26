@@ -128,7 +128,5 @@ void keyPressed() {
   else if (key >= 'A' && key <= 'z' || key == ' ') {
       letter = key;
       input = input + letter;
-      println(letter);
-      println(input);
     }
   }
