@@ -119,8 +119,10 @@ void keyPressed() {
   //could be made so they are not case sensitive
   else if (key ==ENTER) {
     input=input.replaceAll("\\s+","");
-    char [] array=input;
-    println(array);
+    char [] array = new char[input.length()];
+    input.getChars(0, input.length(), array, 0);
+    String inputSearch = String.valueOf(array);
+    println(inputSearch);
     artist=searchforArtist(input.substring(1));
     search=true;
     input=new String();
@@ -130,4 +132,3 @@ void keyPressed() {
     input=input+key;
   }
 }
-
