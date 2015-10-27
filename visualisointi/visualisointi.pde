@@ -88,8 +88,6 @@ String searchforArtist(String searchedArtist){
     String value = row.getString("Artist");
     int Price = row.getInt("Price");
     String str1=searchedArtist;
-    println(str1);
-    println(value.toLowerCase());
     if (str1.equals(value.toLowerCase()) == true) {
       ret= value + " can be booked for $" + Price + ",00";
     }
