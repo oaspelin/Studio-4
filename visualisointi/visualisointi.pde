@@ -1,5 +1,8 @@
 import org.gicentre.utils.stat.*;
+import muthesius.net.*;
+import org.webbitserver.*;
 
+WebSocketP5 socket;
 String input= new String();
 String artist= new String();
 boolean search=false; //If this variable is true the programs shows graph and artist info
@@ -11,6 +14,7 @@ float [] PriceRange= new float[27];
 BarChart barChart;
 
 void setup() {
+  socket = new WebSocketP5(this,8080);
   size(800, 600);
   table = loadTable("Bandprices.csv", "header");
   barChart = new BarChart(this);
@@ -130,3 +134,19 @@ void keyPressed() {
   else input = input+key;
 }
   
+  void websocketOnMessage(WebSocketConnection con, String msg){
+  println(msg);
+  input= input + msg;
+}
+  
+  void stop(){
+  socket.stop();
+}
+
+void websocketOnOpen(WebSocketConnection con){
+  println("A client joined");
+}
+
+void websocketOnClosed(WebSocketConnection con){
+  println("A client left");
+}
