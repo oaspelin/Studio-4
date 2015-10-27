@@ -1,8 +1,8 @@
 import org.gicentre.utils.stat.*;
-import muthesius.net.*;
-import org.webbitserver.*;
+/*import muthesius.net.*;
+import org.webbitserver.*;*/
 
-WebSocketP5 socket;
+//WebSocketP5 socket;
 String input= new String();
 String artist= new String();
 boolean search=false; //If this variable is true the programs shows graph and artist info
@@ -10,11 +10,12 @@ Table table;
 IntList Prices= new IntList();
 //keeps track on how many artists in what pricerange
 float [] PriceRange= new float[27];
+char letter;
 
 BarChart barChart;
 
 void setup() {
-  socket = new WebSocketP5(this,8080);
+ // socket = new WebSocketP5(this,8080);
   size(800, 600);
   table = loadTable("Bandprices.csv", "header");
   barChart = new BarChart(this);
@@ -87,6 +88,8 @@ String searchforArtist(String searchedArtist){
     String value = row.getString("Artist");
     int Price = row.getInt("Price");
     String str1=searchedArtist;
+    println(str1);
+    println(value.toLowerCase());
     if (str1.equals(value.toLowerCase()) == true) {
       ret= value + " can be booked for $" + Price + ",00";
     }
@@ -131,10 +134,13 @@ void keyPressed() {
     input=new String();
   }
   //new chars to our input string
-  else input = input+key;
+    else if (key >= 'A' && key <= 'z' || key == ' ' || key >= '0' && key <= '9') {
+      letter = key;
+      input = input + letter;
+}
 }
   
-  void websocketOnMessage(WebSocketConnection con, String msg){
+/*  void websocketOnMessage(WebSocketConnection con, String msg){
   println(msg);
   input= input + msg;
 }
@@ -149,4 +155,4 @@ void websocketOnOpen(WebSocketConnection con){
 
 void websocketOnClosed(WebSocketConnection con){
   println("A client left");
-}
+}*/
