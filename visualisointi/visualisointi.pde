@@ -140,7 +140,13 @@ void keyPressed() {
   
 /*  void websocketOnMessage(WebSocketConnection con, String msg){
   println(msg);
-  input= input + msg;
+  if (msg.toLowerCase().contains("search")) {
+    artist=searchforArtist(input.toLowerCase());
+    search=true;
+    input=new String();
+  } else {
+    input= msg;
+  }
 }
   
   void stop(){
