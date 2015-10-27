@@ -1,70 +1,93 @@
 import org.gicentre.utils.stat.*;
+import org.gicentre.utils.colour.*;
 /*import muthesius.net.*;
-import org.webbitserver.*;*/
+ import org.webbitserver.*;*/
 
 //WebSocketP5 socket;
 String input= new String();
 String artist= new String();
 boolean search=false; //If this variable is true the programs shows graph and artist info
 Table table;
-IntList Prices= new IntList();
+//IntList Prices= new IntList();
 //keeps track on how many artists in what pricerange
-float [] PriceRange= new float[27];
+float [] PriceRange= new float[14];
 char letter;
 
+int[] pricecategory= new int[13];
+
+
 BarChart barChart;
+ColourTable cTable;
 
 void setup() {
- // socket = new WebSocketP5(this,8080);
+  // socket = new WebSocketP5(this,8080);
   size(800, 600);
   table = loadTable("Bandprices.csv", "header");
   barChart = new BarChart(this);
-  //println(table.getRowCount() + " total rows in table"); 
-  /*for (TableRow row : table.rows ()) {
-    String artist = row.getString("Artist");
-    int Price = row.getInt("Price");
-    String str1="Prince";
-    if (str1.equals(artist) == true) {
-      println(artist + " can be booked for $" + Price + ",00");
-    }
-  }*/
+  textSize(14);
+
+  //price ranges, näitä voi säätää tässä
+  pricecategory[0]=15000; //less than 15000
+  pricecategory[1]=25000; //less than 25000
+  pricecategory[2]=50000;
+  for(int i=1;i<=10;i++){
+    pricecategory[i+2]=i*100000;
+  }
   //Gathers data for the graph
   for (TableRow row : table.rows ()) {
-    int Price = row.getInt("Price");
-    checkPriceRange(Price);
+    int price = row.getInt("Price");
+    checkPriceRange(price);
   }
+  //Purkkaviritys price ranget ei voi olla tasan yhtä suuri muuten hover kusee
+  PriceRange[7]+=0.01;
+  PriceRange[9]-=0.01; 
+  PriceRange[6]+=0.01;
+  PriceRange[13]+=0.01;
 }
 
-//sorts the band prices in price ranges
+ColourTable hover() {
+  cTable=new ColourTable();
+  cTable.addDiscreteColourRule(170, 83, 90, 216);
+  for (int i=0; i<14; i++) {
+    if ((60+(i*48))<(mouseX) && (mouseX)<(60+i*48+48)) {
+      cTable.addDiscreteColourRule(PriceRange[i]-0.01, 83, 90, 216);
+      cTable.addDiscreteColourRule(PriceRange[i], 250, 244, 66);
+      cTable.addDiscreteColourRule(PriceRange[i]+0.01, 83, 90, 216);
+    }
+  }
+  return cTable;
+}
+
+void drawPriceRange() {
+  textAlign(CENTER);
+  for (int i=0; i<14; i++) {
+    if ((60+(i*48))<(mouseX) && (mouseX)<(60+i*48+48)) {
+      PVector v=barChart.getDataToScreen(new PVector(i, 0));
+      //vx=x coordinate of the bar
+      if (i==0) text("0$ - "+pricecategory[i]+"$", v.x, v.y+20);
+      else if (i==13)text("100000$ - ", v.x, v.y+20);
+      else text(pricecategory[i-1]+"$ - "+pricecategory[i]+"$", v.x, v.y+20);
+    }
+  }
+  textAlign(LEFT);
+}
+//sorts the band pricecategory in price ranges
 //tätä vois tsiigailla jos tää on hyvä lajittelu
 void checkPriceRange(int p) {
-  if (p<=7500) PriceRange[0]+=1;
-  else if (p<10000) PriceRange[1]+=1; 
-  else if (p==10000) PriceRange[2]+=1; 
-  else if (p<=13500) PriceRange[3]+=1;
-  else if (p==15000) PriceRange[4]+=1;
-  else if (p<20000) PriceRange[5]+=1;
-  else if (p==20000) PriceRange[6]+=1;
-  else if (p==25000) PriceRange[7]+=1;
-  else if (p==30000) PriceRange[8]+=1;
-  else if (p==35000) PriceRange[9]+=1;
-  else if (p==40000) PriceRange[10]+=1;
-  else if (p<=50000) PriceRange[11]+=1;
-  else if (p<=70000) PriceRange[12]+=1;
-  else if (p==75000) PriceRange[13]+=1;
-  else if (p<100000) PriceRange[14]+=1;
-  else if (p==100000) PriceRange[15]+=1;
-  else if (p<=135000) PriceRange[16]+=1;
-  else if (p==150000) PriceRange[17]+=1;
-  else if (p<=175000) PriceRange[18]+=1;
-  else if (p==200000) PriceRange[19]+=1;
-  else if (p<=275000) PriceRange[20]+=1;
-  else if (p==300000) PriceRange[21]+=1;
-  else if (p==350000) PriceRange[22]+=1;
-  else if (p==400000) PriceRange[23]+=1;
-  else if (p<=600000) PriceRange[24]+=1;
-  else if (p==750000) PriceRange[25]+=1;
-  else if (p<1000000) PriceRange[26]+=1;
+  if (p<pricecategory[0]) PriceRange[0]++;
+  else if (p<pricecategory[1]) PriceRange[1]++;
+  else if (p<pricecategory[2]) PriceRange[2]++;
+  else if (p<pricecategory[3])PriceRange[3]++;
+  else if (p<pricecategory[4])PriceRange[4]++;
+  else if (p<pricecategory[5])PriceRange[5]++;
+  else if (p<pricecategory[6])PriceRange[6]++;
+  else if (p<pricecategory[7])PriceRange[7]++;
+  else if (p<pricecategory[8])PriceRange[8]++;
+  else if (p<pricecategory[9])PriceRange[9]++;
+  else if (p<pricecategory[10])PriceRange[10]++;
+  else if (p<pricecategory[11])PriceRange[11]++;
+  else if (p<pricecategory[12])PriceRange[12]++;
+  else PriceRange[13]++; //over 1M$
 }
 
 void draw() {
@@ -76,27 +99,29 @@ void draw() {
   fill(0);
   rectMode(CORNER);
   drawKeyboardInput();
-  if(search){
-    drawgraph();
+  drawgraph();
+  barChart.setBarColour(PriceRange, hover());
+  drawPriceRange();
+  if (search) {
     drawArtistInfo();
   }
 }
 
-String searchforArtist(String searchedArtist){
+String searchforArtist(String searchedArtist) {
   String ret= "The artist could not be found :(";
   for (TableRow row : table.rows ()) {
     String value = row.getString("Artist");
-    int Price = row.getInt("Price");
+    int price = row.getInt("Price");
     String str1=searchedArtist;
     if (str1.equals(value.toLowerCase()) == true) {
-      ret= value + " can be booked for $" + Price + ",00";
+      ret= value + " can be booked for $" + price + ",00";
     }
   }
   return ret;
 }
 
 //testing
-void drawArtistInfo(){
+void drawArtistInfo() {
   text(artist, 30, 60);
 }
 
@@ -106,15 +131,14 @@ void drawKeyboardInput() {
 }
 
 void drawgraph() {
-  textFont(createFont("Arial", 10), 10);
+  textFont(createFont("Arial", 10), 15);
   barChart.setData(
   PriceRange
     );
   barChart.draw(40, 100, 700, 450);
   barChart.showValueAxis(true);
   barChart.setValueFormat("#");
-  barChart.setBarColour(color(200, 80, 80, 150));
-  barChart.setBarGap(1);
+  barChart.setBarGap(2);
 }
 
 //used for testing
@@ -132,31 +156,31 @@ void keyPressed() {
     input=new String();
   }
   //new chars to our input string
-    else if (key >= 'A' && key <= 'z' || key == ' ' || key >= '0' && key <= '9') {
-      letter = key;
-      input = input + letter;
-}
-}
-  
-/*  void websocketOnMessage(WebSocketConnection con, String msg){
-  println(msg);
-  if (msg.toLowerCase().contains("search")) {
-    artist=searchforArtist(input.toLowerCase());
-    search=true;
-    input=new String();
-  } else {
-    input= msg;
+  else if (key >= 'A' && key <= 'z' || key == ' ' || key >= '0' && key <= '9') {
+    letter = key;
+    input = input + letter;
   }
 }
-  
-  void stop(){
-  socket.stop();
-}
 
-void websocketOnOpen(WebSocketConnection con){
-  println("A client joined");
-}
-
-void websocketOnClosed(WebSocketConnection con){
-  println("A client left");
-}*/
+/*  void websocketOnMessage(WebSocketConnection con, String msg){
+ println(msg);
+ if (msg.toLowerCase().contains("search")) {
+ artist=searchforArtist(input.toLowerCase());
+ search=true;
+ input=new String();
+ } else {
+ input= msg;
+ }
+ }
+ 
+ void stop(){
+ socket.stop();
+ }
+ 
+ void websocketOnOpen(WebSocketConnection con){
+ println("A client joined");
+ }
+ 
+ void websocketOnClosed(WebSocketConnection con){
+ println("A client left");
+ }*/
