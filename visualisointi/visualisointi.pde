@@ -37,7 +37,7 @@ void setup() {
   }
   //Purkkaviritys price ranget ei voi olla tasan yhtä suuri muuten hover kusee
   PriceRange[7]+=0.01;
-  PriceRange[9]-=0.01; 
+  PriceRange[9]+=0.02; 
   PriceRange[6]+=0.01;
   PriceRange[13]+=0.01;
 }
