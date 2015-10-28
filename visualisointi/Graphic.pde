@@ -21,14 +21,14 @@ void drawgraph() {
   textAlign(CENTER);
   textSize(20);
   text("Booking fee", 400, 620);
-  textSize(14);
   textAlign(LEFT);
   //y-axis label
   pushMatrix();
-  translate(0,0);
-  rotate(PI);
-  text("Number of Artists",10,300);
+  translate(width/2,height/2);
+  rotate(-PI/2);
+  text("Number of Artists",-80,-350);
   popMatrix();
+  textSize(14);
 }
 
 ColourTable hover() {
@@ -48,12 +48,12 @@ ColourTable hover() {
 void drawPriceRange() {
   textAlign(CENTER);
   for (int i=0; i<14; i++) {
-    if ((60+(i*48))<(mouseX) && (mouseX)<(60+i*48+48)) {
+    if ((80+(i*48))<(mouseX) && (mouseX)<(80+i*48+48)) {
       PVector v=barChart.getDataToScreen(new PVector(i, 0));
       //vx=x coordinate of the bar
-      if (i==0) text("0$ - "+pricecategory[i]+"$", v.x, v.y+20);
-      else if (i==13)text("100000$ - ", v.x, v.y+20);
-      else text(pricecategory[i-1]+"$ - "+pricecategory[i]+"$", v.x, v.y+20);
+      if (i==0) text("$0-"+"$"+pricecategory[i], v.x, v.y+20);
+      else if (i==13)text("$1000000 - ", v.x, v.y+20);
+      else text("$"+pricecategory[i-1]+"-$"+pricecategory[i], v.x, v.y+20);
       text("Artists: "+int(PriceRange[i]), v.x, v.y+35);
     }
   }
