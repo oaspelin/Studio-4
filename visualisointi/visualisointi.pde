@@ -6,6 +6,7 @@ import org.webbitserver.*;
 WebSocketP5 socket;
 String input= new String();
 String artist= new String();
+int price;
 boolean search=false; //If this variable is true the programs shows graph and artist info
 Table table;
 //IntList Prices= new IntList();
@@ -60,6 +61,7 @@ void draw() {
   drawPriceRange();
   if (search) {
     drawArtistInfo();
+    drawfactBox();
   }
 }
 

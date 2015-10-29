@@ -23,10 +23,11 @@ String searchforArtist(String searchedArtist) {
   String ret= "The artist could not be found :(";
   for (TableRow row : table.rows ()) {
     String value = row.getString("Artist");
-    int price = row.getInt("Price");
+    price = row.getInt("Price");
     String str1=searchedArtist;
     if (str1.equals(value.toLowerCase()) == true) {
-      ret= value + " can be booked for $" + price + ",00";
+      ret=value; 
+      //value + " can be booked for $" + price + ",00";
     }
   }
   return ret;

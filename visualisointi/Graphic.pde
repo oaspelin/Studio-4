@@ -8,6 +8,31 @@ void drawKeyboardInput() {
   text("Search for artist: "+input, 30, 30, 300, 100);
 }
 
+void drawfactBox(){
+  fill(83, 90, 216);
+  rect(460,100,270,100,9);
+  fill(0);
+  textSize(18);
+  text("Artist: "+artist,480,130);
+  text("Booking fee: $"+price,480,155);
+  text("Artists in this pricerange: "+getArtistsinPricerange(price), 480,180);
+  textSize(14);
+}
+
+int getArtistsinPricerange(int price){
+  int ret=0;
+  for(int i= 0; i<=pricecategory.length-1;i++){
+    if(price<pricecategory[i] && i!=pricecategory.length-1){
+      ret=int(PriceRange[i+1]);
+      break;
+    }
+    else if(i==pricecategory.length-1){
+      ret=int(PriceRange[i+1]);
+    }
+  }
+  return ret;
+}
+
 void drawgraph() {
   textFont(createFont("Arial", 10), 15);
   barChart.setData(
