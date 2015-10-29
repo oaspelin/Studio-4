@@ -97,7 +97,7 @@ void drawPriceRange(int num) {
       }
     }
   } else {
-    textSize(18);
+    textSize(14);
     PVector v2=barChart.getDataToScreen(new PVector(num, 0));
     if (num==0) text("$0-"+"$"+pricecategory[num], v2.x, v2.y+20);
     else if (num==13)text("$1000000 - ", v2.x, v2.y+20);

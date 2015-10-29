@@ -48,5 +48,6 @@ int getArtistsinPricerange(int price) {
       drawPriceRange(i+1);
     }
   }
+  textSize(18);
   return ret;
 }
