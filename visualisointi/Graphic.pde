@@ -1,7 +1,7 @@
 /*//testing
-void drawArtistInfo() {
-  text(artist, 30, 60);
-}*/
+ void drawArtistInfo() {
+ text(artist, 30, 60);
+ }*/
 
 //used for testing
 void drawKeyboardInput() {
@@ -23,8 +23,8 @@ void drawfactBox() {
   }
   textSize(14);
   stroke(3);
-  line(710,110,720,120);
-  line(710,120,720,110);
+  line(710, 110, 720, 120);
+  line(710, 120, 720, 110);
   stroke(0);
 }
 
@@ -75,10 +75,11 @@ ColourTable hover() {
 void factBoxColor(float range) {
   cTable=new ColourTable();
   cTable.addDiscreteColourRule(170, 83, 90, 216);
-
-  cTable.addDiscreteColourRule(range-0.01, 83, 90, 216);
-  cTable.addDiscreteColourRule(range, 250, 244, 66);
-  cTable.addDiscreteColourRule(range+0.01, 83, 90, 216);
+  if (artist.equals("N/A")==false) {
+    cTable.addDiscreteColourRule(range-0.01, 83, 90, 216);
+    cTable.addDiscreteColourRule(range, 250, 244, 66);
+    cTable.addDiscreteColourRule(range+0.01, 83, 90, 216);
+  }
   barChart.setBarColour(PriceRange, cTable);
 }
 
@@ -106,5 +107,4 @@ void drawPriceRange(int num) {
   }
   textAlign(LEFT);
 }
-
 
