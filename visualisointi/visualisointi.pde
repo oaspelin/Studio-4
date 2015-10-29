@@ -21,7 +21,7 @@ BarChart barChart;
 ColourTable cTable;
 
 void setup() {
-  socket = new WebSocketP5(this,8080);
+  socket = new WebSocketP5(this, 8080);
   size(800, 650);
   table = loadTable("Bandprices.csv", "header");
   barChart = new BarChart(this);
@@ -31,7 +31,7 @@ void setup() {
   pricecategory[0]=15000; //less than 15000
   pricecategory[1]=25000; //less than 25000
   pricecategory[2]=50000; 
-  for(int i=1;i<=10;i++){//100 000-1 000 000
+  for (int i=1; i<=10; i++) {//100 000-1 000 000
     pricecategory[i+2]=i*100000;
   }
   //Gathers data for the graph
@@ -57,14 +57,14 @@ void draw() {
   rectMode(CORNER);
   drawKeyboardInput();
   drawgraph();
-  barChart.setBarColour(PriceRange, hover());
-  drawPriceRange();
+  if (!search) {
+    barChart.setBarColour(PriceRange, hover());
+    drawPriceRange(1);
+  }
   if (search) {
-    drawArtistInfo();
     drawfactBox();
   }
 }
-
 
 
 
