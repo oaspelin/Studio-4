@@ -13,6 +13,11 @@ void websocketOnMessage(WebSocketConnection con, String msg){
     artist=searchforArtist(input.toLowerCase().trim());
     search=true;
     input=new String();
+  } else if (msg.trim().toLowerCase().contains("random")){
+    TableRow rndrow=table.getRow(int(random(755)));
+    artist=searchforArtist(rndrow.getString("Artist").toLowerCase().trim());
+    search=true;
+    input=new String();
   } else {
     input= msg.trim();
   }
