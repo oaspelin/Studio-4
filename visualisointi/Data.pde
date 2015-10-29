@@ -20,7 +20,7 @@ void checkPriceRange(int p) {
 }
 
 String searchforArtist(String searchedArtist) {
-  String ret= "N/A";
+  String ret= "Not found";
   for (TableRow row : table.rows ()) {
     String value = row.getString("Artist");
     int tempprice = row.getInt("Price");

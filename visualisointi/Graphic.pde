@@ -14,9 +14,10 @@ void drawfactBox() {
   fill(0);
   textSize(18);
   text("Artist: "+artist, 480, 130);
-  if ("N/A".equals(artist)) {
-    text("Booking fee: "+artist, 480, 155);
-    text("Artists in this pricerange: "+artist, 480, 180);
+  if ("Not found".equals(artist)) {
+    text("Booking fee: N/A", 480, 155);
+    text("Artists in this pricerange: N/A", 480, 180);
+    factBoxColor(0.0);
   } else {
     text("Booking fee: $"+price, 480, 155);
     text("Artists in this pricerange: "+getArtistsinPricerange(price), 480, 180);
