@@ -1,6 +1,9 @@
 import org.gicentre.utils.stat.*;
 import org.gicentre.utils.colour.*;
+import muthesius.net.*;
+import org.webbitserver.*;
 
+WebSocketP5 socket;
 String input= new String();
 String artist= new String();
 boolean search=false; //If this variable is true the programs shows graph and artist info
@@ -17,7 +20,7 @@ BarChart barChart;
 ColourTable cTable;
 
 void setup() {
-  // socket = new WebSocketP5(this,8080);
+  socket = new WebSocketP5(this,8080);
   size(800, 650);
   table = loadTable("Bandprices.csv", "header");
   barChart = new BarChart(this);
