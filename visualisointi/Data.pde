@@ -20,6 +20,10 @@ void checkPriceRange(int p) {
 }
 
 String searchforArtist(String searchedArtist) {
+  found.pause();
+  notFound.pause();
+  found.rewind();
+  notFound.rewind();
   String ret= "Not found";
   for (TableRow row : table.rows ()) {
     String value = row.getString("Artist");
@@ -31,6 +35,10 @@ String searchforArtist(String searchedArtist) {
       //value + " can be booked for $" + price + ",00";
     }
   }
+  if (ret.equals("Not found") == true) {
+    notFound.play();
+  }
+  else found.play();
   return ret;
 }
 

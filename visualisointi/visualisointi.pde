@@ -2,6 +2,7 @@ import org.gicentre.utils.stat.*;
 import org.gicentre.utils.colour.*;
 import muthesius.net.*;
 import org.webbitserver.*;
+import ddf.minim.*;
 
 WebSocketP5 socket;
 String input= new String();
@@ -13,6 +14,10 @@ Table table;
 //keeps track on how many artists in what pricerange
 float [] PriceRange= new float[14];
 char letter;
+AudioSnippet notFound;
+AudioSnippet found;
+Minim minim1;
+Minim minim2;
 
 int[] pricecategory= new int[13];
 
@@ -26,6 +31,12 @@ void setup() {
   table = loadTable("Bandprices.csv", "header");
   barChart = new BarChart(this);
   textSize(14);
+  
+  //for sound effects
+  minim1 = new Minim(this);
+  notFound = minim1.loadSnippet("notFound.mp3");
+  minim2 = new Minim(this);
+  found = minim2.loadSnippet("found.mp3");
 
   //price ranges, näitä voi säätää tässä
   pricecategory[0]=15000; //less than 15000
