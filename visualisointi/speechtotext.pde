@@ -7,6 +7,7 @@ void stop(){
   socket.stop();
 }
 
+//Opens websocket to Chrome browser for use of Google Speach API
 void websocketOnMessage(WebSocketConnection con, String msg){
   println(msg.trim());
   if (msg.trim().toLowerCase().contains("search")) {
@@ -23,12 +24,12 @@ void websocketOnMessage(WebSocketConnection con, String msg){
   }
 }
 
-// Koodi palauttaa puheentunnistuksen vastauksen msg muuttujaan
-
+//Notifies when a connection has been made
 void websocketOnOpen(WebSocketConnection con){
   println("A client joined");
 }
 
+//Notifies when a connection has been disconnected
 void websocketOnClosed(WebSocketConnection con){
   println("A client left");
 }
