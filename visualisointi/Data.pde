@@ -1,7 +1,4 @@
-//tässä välila
-
 //sorts the band pricecategory in price ranges
-//tätä vois tsiigailla jos tää on hyvä lajittelu
 void checkPriceRange(int p) {
   if (p<pricecategory[0]) PriceRange[0]++;
   else if (p<pricecategory[1]) PriceRange[1]++;
@@ -32,7 +29,6 @@ String searchforArtist(String searchedArtist) {
     if (str1.equals(value.toLowerCase()) == true) {
       ret=value; 
       price=tempprice;
-      //value + " can be booked for $" + price + ",00";
     }
   }
   if (ret.equals("Not found") == true) {
@@ -56,6 +52,6 @@ int getArtistsinPricerange(int price) {
       drawPriceRange(i+1);
     }
   }
-  textSize(18);
+  textSize(14);
   return ret;
 }

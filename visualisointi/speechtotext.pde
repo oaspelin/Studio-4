@@ -23,8 +23,6 @@ void websocketOnMessage(WebSocketConnection con, String msg){
   }
 }
 
-// Koodi palauttaa puheentunnistuksen vastauksen msg muuttujaan
-
 void websocketOnOpen(WebSocketConnection con){
   println("A client joined");
 }

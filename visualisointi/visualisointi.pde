@@ -10,10 +10,11 @@ String artist= new String();
 int price;
 boolean search=false; //If this variable is true the programs shows graph and artist info
 Table table;
-//IntList Prices= new IntList();
 //keeps track on how many artists in what pricerange
 float [] PriceRange= new float[14];
 char letter;
+int blinkTimer; //timer for text cursor
+PFont fontti;
 AudioSnippet notFound;
 AudioSnippet found;
 Minim minim1;
@@ -21,24 +22,24 @@ Minim minim2;
 
 int[] pricecategory= new int[13];
 
-
 BarChart barChart;
 ColourTable cTable;
 
 void setup() {
   socket = new WebSocketP5(this, 8080);
-  size(800, 650);
+  size(800, 750);
   table = loadTable("Bandprices.csv", "header");
   barChart = new BarChart(this);
   textSize(14);
-  
+  fontti = createFont("CenturyGothic-Bold",14);
+
   //for sound effects
   minim1 = new Minim(this);
   notFound = minim1.loadSnippet("notFound.mp3");
   minim2 = new Minim(this);
   found = minim2.loadSnippet("found.mp3");
 
-  //price ranges, näitä voi säätää tässä
+  //price ranges
   pricecategory[0]=15000; //less than 15000
   pricecategory[1]=25000; //less than 25000
   pricecategory[2]=50000; 
@@ -50,7 +51,6 @@ void setup() {
     int price = row.getInt("Price");
     checkPriceRange(price);
   }
-  //Purkkaviritys price ranget ei voi olla tasan yhtä suuri muuten hover kusee
   PriceRange[7]+=0.01;
   PriceRange[9]+=0.02; 
   PriceRange[6]+=0.01;
@@ -59,13 +59,15 @@ void setup() {
 
 
 void draw() {
-  background(255);
-  fill(200);
-  rectMode(CENTER);
+  background(200, 240, 255);
+  blinkTimer = millis();
+  fill(83, 90, 216);
+  textFont(fontti);
+  textSize(45);
+  text("How much does it cost to book...", 40, 85);
   noStroke();
-  rect(400, 40, 800, 80);
+  rect(70, 130, 380, 70, 9);
   fill(0);
-  rectMode(CORNER);
   drawKeyboardInput();
   drawgraph();
   if (!search) {
@@ -76,7 +78,6 @@ void draw() {
     drawfactBox();
   }
 }
-
 
 
 
